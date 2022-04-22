@@ -1,0 +1,17 @@
+{% extends 'myapp/base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+
+<div class="container">
+        <div class="row">
+            <div class="col-sm-6 mx-auto" style="margin-top: 70px">
+                <h1>Transaction Successful!</h1>
+                <div class="form-btn">
+                    <a href="{% url 'home' %}" class="btn btn-primary">Back to Home Page</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

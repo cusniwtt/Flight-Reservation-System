@@ -1,0 +1,36 @@
+{% extends "myapp/base.html" %}
+{% block content %}
+<head>
+<style>
+    h2 {text-align: left;}
+    
+</style>
+</head>
+<body>
+<h2>Payment Method</h2>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6 mx-auto" style="margin-top: 70">
+            <div class="from-btn">
+                <img src="../static/img/cash.png" class="img-thumbnail"></img>
+                <a href="{% url 'complete' %}" class="btn">Cash</a>
+            </div>
+            <div class="form-btn">
+                <img src="../static/img/mastercard.png" class="img-thumbnail"></img>
+                <a href="{% url 'complete' %}" class="btn">Master Card</a>
+            </div>
+        </div>
+        <div class="col-sm-6 mx-auto" style="margin-top: 70">
+            <div class="form-btn">
+                <img src="../static/img/visa.jpg" class="img-thumbnail"></img>
+                <a href="{% url 'complete' %}" class="btn">Visa Card</a>
+            </div>
+            <div class="form-btn">
+                <img src="../static/img/paypal.jpg" class="img-thumbnail"></img>
+                <a href="{% url 'complete' %}" class="btn">Check</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+{% endblock %}

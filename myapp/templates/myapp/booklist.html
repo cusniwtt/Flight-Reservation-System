@@ -1,0 +1,59 @@
+{% extends 'myapp/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<h3>{{msg}}</h3>
+<h2>Flights Booked/Cancelled</h2>
+<table class="table table-striped">
+    <thead>
+    <td>Reserve ID</td>
+    <td>Passenger</td>
+    <td>Flight Name</td>
+    <td>Depature Airport</td>
+    <td>Destination Airport</td>
+    <td>Number of seat</td>
+    <td>Price</td>
+    <td>Depature Date</td>
+    <td>Depature Time</td>
+    <td>Destination Date</td>
+    <td>Destination Time</td>
+    <td>Status</td>
+
+
+    </thead>
+
+    {% for row in book_list %}
+    <tr>
+        <td>{{row.id}}</td>
+        <td>{{row.name}}</td>
+        <td>{{row.flight_name}}</td>
+        <td>{{row.source}}</td>
+        <td>{{row.dest}}</td>
+        <td>{{row.nos}}</td>
+        <td>{{row.price}}</td>
+        <td>{{row.date}}</td>
+        <td>{{row.time}}</td>
+        <td>{{row.date1}}</td>
+        <td>{{row.time1}}</td>
+        <td>{{row.status}}</td>
+
+
+    </tr>
+    {% endfor %}
+</table>
+    <div class="content-section">
+        <form action="{% url 'cancellings' %}" method="post">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Cancel Booking</legend>
+                {{ form|crispy }}
+            </fieldset>
+            <div>
+                <input name='flight_id' class="form-control" type="number" id="example-email-input" placeholder="Enter ID of the Flight to Cancel from table above">
+            </div>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Cancel</button>
+            </div>
+            {{error}}
+        </form>
+    </div>
+{% endblock content %}

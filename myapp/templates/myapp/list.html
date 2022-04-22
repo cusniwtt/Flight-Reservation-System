@@ -1,0 +1,61 @@
+{% extends 'myapp/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<h3>{{msg}}</h3>
+<h2>List of flights</h2>
+<table class="table table-striped" >
+    <thead>
+    <td>Reserve ID</td>
+    <td>Passenger Name</td>
+    <td>Depature Airport</td>
+    <td>Destination Airport</td>
+    <td>Number of Seat</td>
+    <td>Available Seat</td>
+    <td>Price</td>
+    <td>Depature Date</td>
+    <td>Depature Time</td>
+    <td>Destination Date</td>
+    <td>Destination Time</td>
+
+    </thead>
+
+    {% for row in flight_list %}
+    <tr>
+        <td>{{row.id }}</td>
+        <td>{{row.flight_name}}</td>
+        <td>{{row.source}}</td>
+        <td>{{row.dest}}</td>
+        <td>{{row.nos}}</td>
+        <td>{{row.rem}}</td>
+        <td>{{row.price}}</td>
+        <td>{{row.date}}</td>
+        <td>{{row.time}}</td>
+        <td>{{row.date1}}</td>
+        <td>{{row.time1}}</td>
+
+
+    </tr>
+    {% endfor %}
+</table>
+
+<div class="content-section">
+        <form action="{% url 'bookings' %}" method="post">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Flight Booking</legend>
+                {{ form|crispy }}
+            </fieldset>
+            <div>
+                <input name='flight_id' class="form-control" type="number" id="example-email-input" placeholder="Enter ID of the Flight to Book">
+            </div>
+            <div>
+                <input name='no_seats' class="form-control" type="number" placeholder="Enter No of Seats to Book Here">
+            </div>
+            <br>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Book</button>
+            </div>
+            {{error}}
+        </form>
+    </div>
+{% endblock %}
